@@ -29,22 +29,22 @@ FROM (
     ROW_NUMBER() OVER ( PARTITION BY season ORDER BY losses DESC) AS rank
   FROM `bigquery-public-data.ncaa_basketball.mbb_historical_teams_seasons`
   WHERE division = 1
- )
- WHERE rank = 1
- ORDER BY season DESC;
+)
+WHERE rank = 1
+ORDER BY season DESC;
  
- # Lets find who has the highest AVG win rate per season and add the mascot for the teams in for a join
+# Lets find who has the highest AVG win rate per season and add the mascot for the teams in for a join
  
- SELECT seasons.season, seasons.university, seasons.name, ROUND(seasons.average*100), mascots.mascot
- FROM (
+SELECT seasons.season, seasons.university, seasons.name, ROUND(seasons.average*100), mascots.mascot
+FROM (
   SELECT season, name, average,team_id, university,
     ROW_NUMBER() OVER ( PARTITION BY season ORDER BY average DESC) AS rank
   FROM (SELECT season, name, wins/NULLIF(wins + losses, 0) as average, team_id, market AS university
     FROM `bigquery-public-data.ncaa_basketball.mbb_historical_teams_seasons`
     WHERE division = 1)
- ) AS seasons
- LEFT JOIN `bigquery-public-data.ncaa_basketball.mascots` AS mascots
- ON
- seasons.team_id = mascots.id
- WHERE rank = 1
- ORDER BY season DESC
+) AS seasons
+LEFT JOIN `bigquery-public-data.ncaa_basketball.mascots` AS mascots
+ON
+seasons.team_id = mascots.id
+WHERE rank = 1
+ORDER BY season DESC
