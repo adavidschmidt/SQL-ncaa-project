@@ -10,5 +10,5 @@ Some items used:
 
 The goal of the project was to gain insights form the ncaa_basketball data set and to look at data points that some may find interesting.
 
-Work was done in BigQuery using the public data set for NCAA_basketball
-[click here](console.cloud.google.com/bigquery?ws=!1m4!1m3!3m2!1sbigquery-public-data!2sncaa_basketball) to access BigQuery
+Work was done in BigQuery using the public data set for NCAA_basketball.
+[Click here](console.cloud.google.com/bigquery?ws=!1m4!1m3!3m2!1sbigquery-public-data!2sncaa_basketball) to access BigQuery
